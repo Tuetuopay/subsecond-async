@@ -53,6 +53,7 @@ impl<F: Future> Future for SubsecondFuture<F> {
 /// will use the newer version of the function.
 ///
 /// Refer to [`subsecond::call`] for more details.
-pub fn call<Fut: Future, F: FnMut() -> Fut>(mut f: F) -> SubsecondFuture<Fut> {
-    subsecond::call(|| SubsecondFuture(f()))
+pub fn call<Fut: Future, F: FnOnce() -> Fut>(f: F) -> SubsecondFuture<Fut> {
+    let mut op = Some(f);
+    subsecond::call(|| SubsecondFuture(op.take().expect("Subsecond called twice")()))
 }
