@@ -57,3 +57,9 @@ pub fn call<Fut: Future, F: FnOnce() -> Fut>(f: F) -> SubsecondFuture<Fut> {
     let mut op = Some(f);
     subsecond::call(|| SubsecondFuture(op.take().expect("Subsecond called twice")()))
 }
+
+/// Same as [`subsecond::call`], without the `FnMut` requirement.
+pub fn call_sync<O>(f: impl FnOnce() -> O) -> O {
+    let mut op = Some(f);
+    subsecond::call(move || op.take().expect("Subsecond called twice.")())
+}
