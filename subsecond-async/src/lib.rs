@@ -23,6 +23,9 @@
 
 use std::{pin::Pin, task::{Context, Poll}};
 
+#[cfg(feature = "macros")]
+pub use subsecond_async_macros::subsecond;
+
 /// A wrapper around a future that support [`subsecond`] hotpatching.
 ///
 /// Wrap any future using [`SubsecondFuture::new`] to have it hotpatchable using [`subsecond`].

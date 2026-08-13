@@ -625,12 +625,18 @@ dependencies = [
  "dioxus-devtools",
  "pin-project",
  "subsecond",
+ "subsecond-async-macros",
  "tokio",
 ]
 
 [[package]]
 name = "subsecond-async-macros"
 version = "0.1.0"
+dependencies = [
+ "quote",
+ "subsecond-async",
+ "syn 3.0.3",
+]
 
 [[package]]
 name = "subsecond-types"

@@ -16,6 +16,7 @@ quote = "1"
 subsecond = "0.7"
 syn = "3"
 
+subsecond-async.path = "./subsecond-async"
 subsecond-async-macros.path = "./subsecond-async-macros"
 
 # For examples

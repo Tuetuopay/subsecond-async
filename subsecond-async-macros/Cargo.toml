@@ -4,3 +4,11 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+syn = { workspace = true, features = ["full", "extra-traits"] }
+quote.workspace = true
+
+[dev-dependencies]
+subsecond-async.workspace = true
+
+[lib]
+proc-macro = true
