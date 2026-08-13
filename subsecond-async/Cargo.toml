@@ -1,0 +1,13 @@
+[package]
+name = "subsecond-async"
+authors.workspace = true
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+pin-project.workspace = true
+subsecond.workspace = true
+
+[dev-dependencies]
+tokio.workspace = true
+dioxus-devtools.workspace = true
