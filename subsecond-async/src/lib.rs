@@ -43,6 +43,10 @@ impl<F: Future> Future for SubsecondFuture<F> {
     type Output = F::Output;
 
     fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Self::Output> {
+        if !cfg!(debug_assertions) {
+            return self.project().0.poll(cx);
+        }
+
         call_sync(move || self.project().0.poll(cx))
     }
 }
@@ -57,6 +61,10 @@ pub fn call<Fut: Future, F: FnOnce() -> Fut>(f: F) -> SubsecondFuture<Fut> {
 
 /// Same as [`subsecond::call`], without the `FnMut` requirement.
 pub fn call_sync<O>(f: impl FnOnce() -> O) -> O {
+    if !cfg!(debug_assertions) {
+        return f();
+    }
+
     let mut op = Some(f);
     // Unwrap safety: subsecond::call takes an FnMut purely for typesystem and move semantics.
     // It needs to retry calling because subsecond itself may fail, but it will only ever call the
