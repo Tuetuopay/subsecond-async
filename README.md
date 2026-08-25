@@ -21,3 +21,18 @@ for x in 0..5 {
 
 To actually load patches into your applications, follow the regular
 [`subsecond`] usage guide.
+
+## Warnings
+
+Here be dragons. Due to how subsecond is built, this library has *less*
+guarantees than regular subsecond. Hotpatching is already difficult as-is, and
+with async it becomes harder. In particular, expect worse support to reload a
+long-lived function. This should happen rarely for async code, though it's
+better to use subsecond on async functions that will be called from scratch
+after patching (e.g. request handlers, tick functions, etc).
+
+Thus, expect *more* crashes and issues than with regular subsecond for sync
+code.
+
+Since this is a development tool that gains a lot of time even when it works
+90% of the time, I feel like it is already useful and worth it as-is.
