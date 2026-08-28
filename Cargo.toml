@@ -11,6 +11,8 @@ edition = "2024"
 version = "0.1.0"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/Tuetuopay/subsecond-async"
+description = "Async compatibility for subsecond, a runtime hotpatching engine for Rust hot-reloading"
+keywords = ["hotpatch", "engine", "subsecond", "dioxus", "async"]
 
 [workspace.dependencies]
 pin-project = "1"
@@ -19,7 +21,7 @@ subsecond = "0.7"
 syn = "3"
 
 subsecond-async.path = "./subsecond-async"
-subsecond-async-macros.path = "./subsecond-async-macros"
+subsecond-async-macros = { version = "0.1.0", path = "./subsecond-async-macros" }
 
 # For examples
 tokio = { version = "1.53.1", features = ["rt", "macros", "time"] }
